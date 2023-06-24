@@ -34,6 +34,10 @@ class VentasControllerTest {
         };
         cs.generarPrestamo("1", libro1);
 
+        // System.out.println(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getDiasRetraso());
+
+
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0), cs.listaSocios.get(0).getHistorialPrestamo().get(0));
+
     }
     }

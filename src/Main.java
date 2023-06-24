@@ -1,3 +1,8 @@
+import Controller.ControllerSocio;
+import Model.Ejemplar;
+import Model.MediosContacto;
+import Model.tipoEjemplar;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         ControllerSocio cs = ControllerSocio.getInstances();
