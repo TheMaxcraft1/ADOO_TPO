@@ -1,7 +1,7 @@
 package Model;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class Prestamo {
 
@@ -10,12 +10,12 @@ public class Prestamo {
     private boolean devuelto = false;
     private int diasRetraso = 0;
     private LocalDateTime fechaDevolucion;
-    private int diasPrestamo;
-    private Socio socio;
     private Ejemplar ejemplar;
 
-    public Prestamo(String dni, LocalDateTime fechaInicio, String idEjemplar) {
-
+    public Prestamo() {
+        this.fechaInicio = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
+        this.diasRetraso = 0;
+        this.devuelto = false;
     }
 
 
@@ -61,19 +61,12 @@ public class Prestamo {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public int getDiasPrestamo() {
-        return diasPrestamo;
+
+    public Ejemplar getEjemplar() {
+        return ejemplar;
     }
 
-    public void setDiasPrestamo(int diasPrestamo) {
-        this.diasPrestamo = diasPrestamo;
-    }
-
-    public Socio getSocio() {
-        return socio;
-    }
-
-    public void setSocio(Socio socio) {
-        this.socio = socio;
+    public void setEjemplar(Ejemplar ejemplar) {
+        this.ejemplar = ejemplar;
     }
 }

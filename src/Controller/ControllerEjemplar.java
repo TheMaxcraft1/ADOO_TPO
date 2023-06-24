@@ -24,26 +24,29 @@ public class ControllerEjemplar {
     }
 
     public void altaEjemplar(String IDEjemplar, String titulo, String tema, String autor, String fechaPublicacion, tipoEjemplar categoria){
-        Integer diasDisp = 0;
+
+        Integer diasDisp = valoresDefecto.getOrDefault(categoria, 0);
+
         Ejemplar ejemplar = null;
+
         switch (categoria) {
             case Revista:
-                diasDisp = valoresDefecto.getOrDefault(categoria, 0);
-                ejemplar = new Revista(IDEjemplar, titulo, tema, autor, fechaPublicacion, false, false, categoria);
+                ejemplar = new Revista(IDEjemplar, titulo, tema, autor, fechaPublicacion, categoria, diasDisp);
                 break;
             case RevistaEspecializada:
-                ejemplar = new RevistaEspecializada(IDEjemplar, titulo, tema, autor, fechaPublicacion, false, false, categoria);
+                ejemplar = new RevistaEspecializada(IDEjemplar, titulo, tema, autor, fechaPublicacion, categoria, diasDisp);
                 break;
             case Diario:
-                ejemplar = new Diario(IDEjemplar, titulo, tema, autor, fechaPublicacion, false, false, categoria);
+                ejemplar = new Diario(IDEjemplar, titulo, tema, autor, fechaPublicacion, categoria, diasDisp);
                 break;
             case Libro:
-                ejemplar = new Libro(IDEjemplar, titulo, tema, autor, fechaPublicacion, false, false, categoria);
+                ejemplar = new Libro(IDEjemplar, titulo, tema, autor, fechaPublicacion, categoria, diasDisp);
                 break;
             default:
                 throw new IllegalArgumentException("Categoría de ejemplar inválida: " + categoria);
         }
-        listaEjemplares.add(ejemplar);
+        if (ejemplar != null)
+            listaEjemplares.add(ejemplar);
     }
 
 

@@ -2,7 +2,7 @@ package Model;
 import java.util.Random;
 
 public class SistemaExternoUbicacion {
-    public String generarUbicacion(){
+    public void generarUbicacion(){
         Random random = new Random();
 
         // Generar coordenadas aleatorias de latitud en el rango de -90 a 90
@@ -10,10 +10,9 @@ public class SistemaExternoUbicacion {
         // Generar coordenadas aleatorias de longitud en el rango de -180 a 180
         double longitud = random.nextDouble() * 360 - 180;
 
-        //Paso a String los valores y los concateno para que se pueda printear por consola
-        String posicion = "Latitud: " + String.valueOf(latitud) + "\n" + "Longitud: " + String.valueOf(longitud);
+        //Printeamos las coordenadas de latitud y longitud generadas
+        System.out.println("Latitud: " + String.valueOf(latitud));
+        System.out.println("Longitud: " + String.valueOf(longitud));
 
-        //Retorno la variable
-        return posicion;
     }
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Ejemplar;
 import Model.MediosContacto;
 import Model.Prestamo;
 import Model.Socio;
@@ -33,10 +34,10 @@ public class ControllerSocio {
         return historial; //DEVOLVEMOS LISTA CON TODOS LOS PRESTAMOS
     }
 
-    public void generarPrestamo(String dni, LocalDateTime fechaInicio, String idEjemplar){
+    public void generarPrestamo(String dni, Ejemplar ejemplar){
         for (Socio socio: listaSocios) {
-            if (socio.getDni() == dni)
-                socio.generarPrestamo(socio.getDni(), LocalDateTime.now().truncatedTo(ChronoUnit.DAYS), idEjemplar);
+            if (socio.getDni().equals(dni))
+                socio.generarPrestamo(ejemplar);
         }
     }
 }

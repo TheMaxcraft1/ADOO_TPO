@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Socio {
@@ -12,7 +13,7 @@ public class Socio {
 
     private String telefono;
     private MediosContacto medioPreferido;
-    private int diasPrestamo;
+    private int diasExtra;
     private int prestamosCorrectos;
     private EstadoSocio estado;
     private List<Prestamo> historialPrestamo;
@@ -27,8 +28,14 @@ public class Socio {
 
     }
 
-    public void generarPrestamo(String dni, LocalDateTime fechaInicio, String idEjemplar){
-        Prestamo nuevoPrestamo = new Prestamo(dni, fechaInicio, idEjemplar);
+    //ASUMIMOS QUE NO SE PUEDEN TENER MAS DE UN PRE
+    public void generarPrestamo(Ejemplar ejemplar){
+        if (historialPrestamo.get(historialPrestamo.size()-1).isDevuelto()){
+            Prestamo nuevoPrestamo = new Prestamo();
+            nuevoPrestamo.setEjemplar(ejemplar);
+            nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
+            historialPrestamo.add(nuevoPrestamo);
+        }
     }
 
     public String getDni() {
@@ -72,11 +79,11 @@ public class Socio {
     }
 
     public int getDiasPrestamo() {
-        return diasPrestamo;
+        return diasExtra;
     }
 
     public void setDiasPrestamo(int diasPrestamo) {
-        this.diasPrestamo = diasPrestamo;
+        this.diasExtra = diasPrestamo;
     }
 
     public int getPrestamosCorrectos() {
@@ -110,4 +117,6 @@ public class Socio {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+
 }
