@@ -28,7 +28,7 @@ public class ControllerSocio {
     public ArrayList<Prestamo> obtenerHistorialPrestamos(String dni){
         ArrayList<Prestamo> historial = new ArrayList<>(); //CREAMOS UNA LISTA VACIA
         for (Socio socio : listaSocios){ //BUSCAMOS EL SOCIO POR DNI
-            if (socio.getDni() == dni)
+            if (socio.getDni().equals(dni))
                 historial.addAll(socio.getHistorialPrestamo()); //AGREGAMOS TODOS LOS PRESTAMOS DE LA LISTA DEL SOCIO A LA LISTA QUE SE DEVOLVERA
         }
         return historial; //DEVOLVEMOS LISTA CON TODOS LOS PRESTAMOS
