@@ -27,8 +27,8 @@ public class Socio {
 
     }
 
-    public void generarPrestamo(LocalDateTime fechaInicio, boolean devuelto, Integer diasRetraso, LocalDateTime fechaDevolucion){
-
+    public void generarPrestamo(String dni, LocalDateTime fechaInicio, String idEjemplar){
+        Prestamo nuevoPrestamo = new Prestamo(dni, fechaInicio, idEjemplar);
     }
 
     public String getDni() {

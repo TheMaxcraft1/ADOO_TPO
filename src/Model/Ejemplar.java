@@ -13,7 +13,6 @@ public abstract class Ejemplar {
     private boolean enPrestamo;
     private boolean deBaja;
     private tipoEjemplar categoria;
-    private Integer diasDisp;
 
 
 
@@ -63,13 +62,6 @@ public abstract class Ejemplar {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public Integer getDiasDisp() {
-        return diasDisp;
-    }
-
-    public void setDiasDisp(Integer diasDisp) {
-        this.diasDisp = diasDisp;
-    }
 
     public boolean isEnPrestamo() {
         return enPrestamo;
@@ -95,7 +87,7 @@ public abstract class Ejemplar {
         this.categoria = categoria;
     }
 
-    public Ejemplar(String idEjemplar, String titulo, String tema, String autor, String fechaPublicacion, boolean enPrestamo, boolean deBaja, tipoEjemplar categoria, Integer diasDisp) {
+    public Ejemplar(String idEjemplar, String titulo, String tema, String autor, String fechaPublicacion, boolean enPrestamo, boolean deBaja, tipoEjemplar categoria) {
         this.idEjemplar = idEjemplar;
         this.titulo = titulo;
         this.tema = tema;
@@ -104,6 +96,5 @@ public abstract class Ejemplar {
         this.enPrestamo = enPrestamo;
         this.deBaja = deBaja;
         this.categoria = categoria;
-        this.diasDisp = diasDisp;
     }
 }
