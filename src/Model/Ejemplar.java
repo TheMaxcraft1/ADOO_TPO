@@ -15,6 +15,8 @@ public abstract class Ejemplar {
     private tipoEjemplar categoria;
     private Integer diasDisp;
 
+    private Ubicacion ubicacion;
+
 
 
 
@@ -94,6 +96,15 @@ public abstract class Ejemplar {
 
     public void setDiasDisp(Integer diasDisp) {
         this.diasDisp = diasDisp;
+    }
+
+    public Ubicacion getUbicacion() {
+        ubicacion.setUbicacion(); //Actualizamos ubicacion
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public Ejemplar(String idEjemplar, String titulo, String tema, String autor, String fechaPublicacion, tipoEjemplar categoria, Integer diasDisp) {

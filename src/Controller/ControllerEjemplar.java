@@ -11,6 +11,13 @@ public class ControllerEjemplar {
     private List<Ejemplar> listaEjemplares = new ArrayList<>();
 
     private Map<tipoEjemplar, Integer> valoresDefecto = new HashMap<>();
+    private static ControllerEjemplar CONTROLLEREJEMPLAR = null;
+
+    public static synchronized ControllerEjemplar getInstances() throws Exception {
+        if(CONTROLLEREJEMPLAR == null) CONTROLLEREJEMPLAR = new ControllerEjemplar();
+        return CONTROLLEREJEMPLAR;
+    }
+
 
     { //SE COLOCAN LOS VALORES POR DEFECTO DE LOS PRESTAMOS ORIGINALES
         valoresDefecto.put(tipoEjemplar.Libro, 10);
@@ -21,12 +28,14 @@ public class ControllerEjemplar {
 
     public void modificarParametrosPrestamos(tipoEjemplar categoria, Integer nuevoParametro){
         valoresDefecto.put(categoria, nuevoParametro); //BUSCAMOS LA CATEGORIA QUE SE BUSCA MODIFICAR Y CAMBIAMOS SU VALOR EN EL DICCIONARIO, PARA QUE CUANDO SE CREE UN NUEVO PRESTAMO, SE BUSQUE AQUI QUE CANTIDAD DE DIAS ESTA DISPONIBLE PARA PRESTAMO
-
+        for (Ejemplar ejemplar: listaEjemplares){
+            ejemplar.setDiasDisp(valoresDefecto.get(ejemplar.getCategoria()));
+        }
     }
 
     public void altaEjemplar(String IDEjemplar, String titulo, String tema, String autor, String fechaPublicacion, tipoEjemplar categoria){
 
-        Integer diasDisp = valoresDefecto.getOrDefault(categoria, 0);
+        Integer diasDisp = valoresDefecto.get(categoria);
 
         Ejemplar ejemplar = null;
 
@@ -60,7 +69,7 @@ public class ControllerEjemplar {
         }
     }
 
-    public List<Ejemplar> buscarEjemplar(String id, String titulo, String autor, String fecha, tipoEjemplar categoria){
+    public void buscarEjemplar(String id, String titulo, String autor, String fecha, tipoEjemplar categoria){
         List<Ejemplar> resultados = new ArrayList<>();
         for (Ejemplar ejemplar : listaEjemplares) { //POR CADA EJEMPLAR EN LA LISTA DE EJEMPLARES
             if  ((id == null || ejemplar.getIdEjemplar().equals(id)) && (titulo == null || ejemplar.getTitulo().equals(titulo)) && //SE VERIFICA QUE EL VALOR BUSCADO O VALGA NULL, ES DECIR QUE NO SE PASO COMO PARAMETRO, O SEA IGUAL AL PARAMETRO QUE SE PASA.
@@ -68,6 +77,20 @@ public class ControllerEjemplar {
                 resultados.add(ejemplar); //SE AGREGA EL EJEMPLAR A LA LISTA DE RESULTADOS
             }
         }
-        return resultados; //SE DEVUELVE LA LISTA DE RESULTADOS
+        for (Ejemplar ejemplar: resultados){
+            ejemplar.getUbicacion();
+            mostrarEjemplar(ejemplar);
+        }
+    }
+    public void mostrarEjemplar(Ejemplar ejemplar){
+        System.out.println("ID:" + ejemplar.getIdEjemplar());
+        System.out.println("Titulo: " + ejemplar.getTitulo());
+        System.out.println("Tema:" + ejemplar.getTema());
+        System.out.println("Autor:" + ejemplar.getAutor());
+        System.out.println("Fecha de publicacion:" + ejemplar.getFechaPublicacion());
+        System.out.println("Categoria" + ejemplar.getCategoria());
+        System.out.println("Ubicacion: Latitud: " + ejemplar.getUbicacion().getLatitud() + "| Longitud: " +ejemplar.getUbicacion().getLongitud());
+        System.out.println("------------------------------------------------------------------------------------------------------------------");
+        System.out.println();
     }
 }

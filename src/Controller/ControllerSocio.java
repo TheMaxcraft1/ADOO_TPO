@@ -9,7 +9,14 @@ import java.util.List;
 
 public class ControllerSocio {
 
-    List<Socio> listaSocios;
+    List<Socio> listaSocios = new ArrayList<>();
+    private static ControllerSocio CONTROLLERSOCIO = null;
+
+    public static synchronized ControllerSocio getInstances() throws Exception {
+        if(CONTROLLERSOCIO == null) CONTROLLERSOCIO = new ControllerSocio();
+        return CONTROLLERSOCIO;
+    }
+
     public void altaSocio(String dni, String nombre, String apellido, String mail, String telefono, MediosContacto medioPreferido){
         Socio nuevoSocio = new Socio();
 
@@ -20,6 +27,7 @@ public class ControllerSocio {
         nuevoSocio.setTelefono(telefono);
         nuevoSocio.setMedioPreferido(medioPreferido);
 
+        listaSocios.add(nuevoSocio);
     }
 
     public ArrayList<Prestamo> obtenerHistorialPrestamos(String dni){
