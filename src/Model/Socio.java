@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Socio {
+    //getter y setters
     private String dni;
     private String nombre;
     private String apellido;
