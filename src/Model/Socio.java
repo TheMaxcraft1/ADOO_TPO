@@ -2,6 +2,7 @@ package Model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Socio {
@@ -16,7 +17,7 @@ public class Socio {
     private int diasExtra;
     private int prestamosCorrectos;
     private EstadoSocio estado;
-    private List<Prestamo> historialPrestamo;
+    private List<Prestamo> historialPrestamo = new ArrayList<>();
 
 
     //METODOS
@@ -30,11 +31,11 @@ public class Socio {
 
     //ASUMIMOS QUE NO SE PUEDEN TENER MAS DE UN PRE
     public void generarPrestamo(Ejemplar ejemplar){
-        if (historialPrestamo.get(historialPrestamo.size()-1).isDevuelto()){
-            Prestamo nuevoPrestamo = new Prestamo();
-            nuevoPrestamo.setEjemplar(ejemplar);
-            nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
-            historialPrestamo.add(nuevoPrestamo);
+        if (historialPrestamo.isEmpty() || historialPrestamo.get(historialPrestamo.size()).isDevuelto()){
+        Prestamo nuevoPrestamo = new Prestamo();
+        nuevoPrestamo.setEjemplar(ejemplar);
+        historialPrestamo.add(nuevoPrestamo);
+        nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
         }
     }
 
