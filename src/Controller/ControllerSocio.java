@@ -4,9 +4,6 @@ import Model.Ejemplar;
 import Model.MediosContacto;
 import Model.Prestamo;
 import Model.Socio;
-
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 

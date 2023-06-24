@@ -21,6 +21,7 @@ public class ControllerEjemplar {
 
     public void modificarParametrosPrestamos(tipoEjemplar categoria, Integer nuevoParametro){
         valoresDefecto.put(categoria, nuevoParametro); //BUSCAMOS LA CATEGORIA QUE SE BUSCA MODIFICAR Y CAMBIAMOS SU VALOR EN EL DICCIONARIO, PARA QUE CUANDO SE CREE UN NUEVO PRESTAMO, SE BUSQUE AQUI QUE CANTIDAD DE DIAS ESTA DISPONIBLE PARA PRESTAMO
+
     }
 
     public void altaEjemplar(String IDEjemplar, String titulo, String tema, String autor, String fechaPublicacion, tipoEjemplar categoria){
