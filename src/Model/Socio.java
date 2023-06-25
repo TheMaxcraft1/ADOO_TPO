@@ -22,9 +22,9 @@ public class Socio {
 
     //METODOS
 
-    public void decrementarDiasPrestamo(){
-        diasExtra--;
-        if (diasExtra == 0)
+    public void decrementarDiasBloqueo(){
+        diasBloqueo--;
+        if (diasBloqueo == 0)
             setHabilitado(false);
     }
 
@@ -41,6 +41,7 @@ public class Socio {
 
     public void devolverPrestamo(){
         historialPrestamo.get(historialPrestamo.size()-1).setDevuelto(true);
+        setdiasBloqueo(10);
     }
 
     public void sumarPrestamoCorrecto(){

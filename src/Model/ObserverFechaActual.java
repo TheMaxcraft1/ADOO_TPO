@@ -17,7 +17,7 @@ public class ObserverFechaActual{
     public void actualizar() throws Exception {
         LocalDateTime fechaActual = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
         if (ultimaFecha.isEqual(fechaActual)) {
-            chequear(this.cs.getInstances());
+            chequear(cs.getInstances());
             ultimaFecha = fechaActual;
         }
     }
@@ -29,7 +29,7 @@ public class ObserverFechaActual{
             }
             else if (cs.verificarFechasPasada(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS), socio)){
                 this.notificarFechaPasada(socio);
-                socio.setdiasBloqueo(socio.getdiasBloqueo()-1);
+                socio.decrementarDiasBloqueo();
             }
         }
     }
@@ -43,18 +43,11 @@ public class ObserverFechaActual{
         mensaje.setCuerpo("Dentro de 2 dias deberas devolver el ejemplar que tomaste prestado de la Biblioteca. No te olvides!");
         mensaje.setMotivo("Proxima devolucion de ejemplar");
 
-        switch (socio.getMedioPreferido()){
-            case MAIL:
-                mensajeador.setMedioMensaje(new Email(new AdaptadorAngus(new AngusMail(socio.getMail()))));
-                break;
-            case WPP:
-                mensajeador.setMedioMensaje(new Wpp(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
-                break;
-            case SMS:
-                mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
-                break;
+        switch (socio.getMedioPreferido()) {
+            case MAIL -> mensajeador.setMedioMensaje(new Email(new AdaptadorAngus(new AngusMail(socio.getMail()))));
+            case WPP -> mensajeador.setMedioMensaje(new Wpp(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
+            case SMS -> mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
         }
-
         mensajeador.enviarMensaje(mensaje);
     }
 
@@ -64,21 +57,14 @@ public class ObserverFechaActual{
         //SETEAMOS EL MENSAJE A ENVIAR
         Mensaje mensaje = new Mensaje();
         mensaje.setFecha(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS));
-        mensaje.setCuerpo("La fecha de devolucion del ejemplar que tomaste prestado ya se ha vencido y no lo haz devuelto. Debido a esto, recibiras una penalizacion para todos tus futuros prestamos, reduciendo la cantidad de dias en 1. Esto seguira ocurriendo todos los dias. Si llegas a 10 dias sin haberlo devuelto, se te ");
+        mensaje.setCuerpo("La fecha de devolucion del ejemplar que tomaste prestado ya se ha vencido y no lo haz devuelto. Debido a esto, recibiras una penalizacion para todos tus futuros prestamos, reduciendo la cantidad de dias en 1. Esto seguira ocurriendo todos los dias. Quedan " + socio.getdiasBloqueo() + "dias hasta que seas bloqueado.");
         mensaje.setMotivo("Devolucion tardia - Penalizacion");
 
-        switch (socio.getMedioPreferido()){
-            case MAIL:
-                mensajeador.setMedioMensaje(new Email(new AdaptadorAngus(new AngusMail(socio.getMail()))));
-                break;
-            case WPP:
-                mensajeador.setMedioMensaje(new Wpp(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
-                break;
-            case SMS:
-                mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
-                break;
+        switch (socio.getMedioPreferido()) {
+            case MAIL -> mensajeador.setMedioMensaje(new Email(new AdaptadorAngus(new AngusMail(socio.getMail()))));
+            case WPP -> mensajeador.setMedioMensaje(new Wpp(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
+            case SMS -> mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(socio.getTelefono()))));
         }
-
         mensajeador.enviarMensaje(mensaje);
     }
 }

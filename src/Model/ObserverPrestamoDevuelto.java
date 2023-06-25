@@ -28,22 +28,12 @@ public class ObserverPrestamoDevuelto implements Observer{
             mensaje.setCuerpo("Devolvió en tiempo y forma el ejemplar prestado. Actualmente tiene " + contacto.getPrestamosCorrectos() + "prestamos devueltos correctamente. Devuelva 5 de manera correcta y obtendra un dia de prestamos extra.");
             mensaje.setMotivo("Ejemplar devuelto en tiempo y forma");
 
-            switch (contacto.getMedioPreferido()){
-                case MAIL:
-                    mensajeador.setMedioMensaje(new Email(new AdaptadorAngus(new AngusMail(contacto.getMail()))));
-                    break;
-                case WPP:
-                    mensajeador.setMedioMensaje(new Wpp(new AdaptadorTwilio(new TwilioSDK(contacto.getTelefono()))));
-                    break;
-                case SMS:
-                    mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(contacto.getTelefono()))));
-                    break;
+            switch (contacto.getMedioPreferido()) {
+                case MAIL -> mensajeador.setMedioMensaje(new Email(new AdaptadorAngus(new AngusMail(contacto.getMail()))));
+                case WPP -> mensajeador.setMedioMensaje(new Wpp(new AdaptadorTwilio(new TwilioSDK(contacto.getTelefono()))));
+                case SMS -> mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(contacto.getTelefono()))));
             }
-
             mensajeador.enviarMensaje(mensaje);
-
-        } else if (!prestamo.isDevuelto() && LocalDateTime.now().isAfter(prestamo.getFechaDevolucion())) {
-
         }
     }
 
