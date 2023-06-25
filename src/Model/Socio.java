@@ -40,6 +40,10 @@ public class Socio {
         }
     }
 
+    public void devolverPrestamo(){
+        historialPrestamo.get(historialPrestamo.size()).setDevuelto(true);
+    }
+
     public String getDni() {
         return dni;
     }

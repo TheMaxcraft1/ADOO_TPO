@@ -41,6 +41,14 @@ public class ControllerSocio {
         return historial; //DEVOLVEMOS LISTA CON TODOS LOS PRESTAMOS
     }
 
+    public void setDevuelto(String dni){
+        for (Socio socio:listaSocios){
+            if (socio.getDni().equals(dni))
+                socio.devolverPrestamo();
+            socio.getHistorialPrestamo().get(socio.getHistorialPrestamo().size()).getEjemplar().setEnPrestamo(false);
+        }
+    }
+
     public void generarPrestamo(String dni, Ejemplar ejemplar) {
         if(!ejemplar.isDeBaja() && !ejemplar.isEnPrestamo()){ //Si el ejemplar no esta en prestamo ni de baja
             for (Socio socio : listaSocios) {
