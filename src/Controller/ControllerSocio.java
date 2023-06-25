@@ -4,6 +4,8 @@ import Model.Ejemplar;
 import Model.MediosContacto;
 import Model.Prestamo;
 import Model.Socio;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,15 +32,6 @@ public class ControllerSocio {
         nuevoSocio.setMedioPreferido(medioPreferido);
 
         listaSocios.add(nuevoSocio);
-    }
-
-    public ArrayList<Prestamo> obtenerHistorialPrestamos(String dni) {
-        ArrayList<Prestamo> historial = new ArrayList<>(); //CREAMOS UNA LISTA VACIA
-        for (Socio socio : listaSocios) { //BUSCAMOS EL SOCIO POR DNI
-            if (socio.getDni().equals(dni))
-                historial.addAll(socio.getHistorialPrestamo()); //AGREGAMOS TODOS LOS PRESTAMOS DE LA LISTA DEL SOCIO A LA LISTA QUE SE DEVOLVERA
-        }
-        return historial; //DEVOLVEMOS LISTA CON TODOS LOS PRESTAMOS
     }
 
     public void setDevuelto(String dni){
@@ -99,5 +92,26 @@ public class ControllerSocio {
                     prestamo.mostrarPrestamo();
             }
         }
+    }
+
+    public boolean verificarFechasProxima(LocalDateTime fechaActual, Socio socio){
+            Prestamo ultimoPrestamo = socio.getHistorialPrestamo().get(socio.getHistorialPrestamo().size()-1);
+            if(!ultimoPrestamo.isDevuelto()) {
+                if (ultimoPrestamo.getFechaDevolucion().isEqual(fechaActual.minusDays(2))) {
+                    return true;
+                    //notificarEntregaProxima();
+                }
+            }
+        return false;
+    }
+
+    public boolean verificarFechasPasada(LocalDateTime fechaActual, Socio socio){
+        Prestamo ultimoPrestamo = socio.getHistorialPrestamo().get(socio.getHistorialPrestamo().size()-1);
+        if(!ultimoPrestamo.isDevuelto()) {
+            if (ultimoPrestamo.getFechaDevolucion().isBefore(fechaActual)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

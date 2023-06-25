@@ -162,6 +162,24 @@ class ControllerSocioTest {
         cs.mostrarHistorialPrestamos("44483055");
 
     }
+
+    @Test
+    void prueba() throws Exception {
+        ControllerSocio cs = ControllerSocio.getInstances();
+        cs.altaSocio("44483055", "Nicolas", "Irigoyen", "nicolas.irigoyen2002@gmai.com", "1157035954", MediosContacto.SMS);
+        cs.altaSocio("235655747", "Maximo", "Fain", "maximo.fain@gmai.com", "55777144741", MediosContacto.MAIL);
+        cs.altaSocio("55977742", "Timoteo", "Lombardo", "timoteo.lombardo@gmai.com", "548477751", MediosContacto.WPP);
+
+
+
+        for (Socio socio: cs.getListaSocios()){
+            socio.setTelefono("22222");
+        }
+
+        for (Socio socio: cs.getListaSocios()){
+            System.out.println(socio.getTelefono());
+        }
+    }
 }
 
 

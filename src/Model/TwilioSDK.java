@@ -4,6 +4,11 @@ public class TwilioSDK {
     //Cosas de Twilio, por ejemplo NUMERO DE CELULAR, TOKEN, ETC
     private String numero;
 
+    public TwilioSDK(String numero)
+    {
+        this.numero = numero;
+    }
+
     public void enviarWPP(Mensaje mensaje)
     {
         System.out.println("Enviando WhatsApp al número: " + this.numero);

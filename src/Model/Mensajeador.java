@@ -2,17 +2,20 @@ package Model;
 
 public class Mensajeador {
     private EstrategiaMensaje medio;
-    private Mensaje mensaje;
-
 
     public void setMedioMensaje(EstrategiaMensaje medio)
     {
         this.medio = medio;
     }
 
-    public void enviarMensaje()
+    public void enviarMensaje(Mensaje mensaje)
     {
-        medio.enviarNotificacion(this.mensaje);
+        medio.enviarNotificacion(mensaje);
+    }
+
+    public EstrategiaMensaje getMedio()
+    {
+        return medio;
     }
 }
 

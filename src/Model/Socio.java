@@ -7,18 +7,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class Socio {
-    //getter y setters
     private String dni;
     private String nombre;
     private String apellido;
     private String mail;
-
     private String telefono;
     private MediosContacto medioPreferido;
-    private int diasExtra;
-    private int prestamosCorrectos;
+    private Integer diasExtra;
+    private Integer prestamosCorrectos;
     private List<Prestamo> historialPrestamo = new ArrayList<>();
-    private boolean habilitado = true;
+    private Boolean habilitado = true;
+
 
 
     //METODOS
@@ -35,6 +34,7 @@ public class Socio {
             Prestamo nuevoPrestamo = new Prestamo();
             nuevoPrestamo.setEjemplar(ejemplar);
             nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
+            nuevoPrestamo.setSocioAsociado(this);
             historialPrestamo.add(nuevoPrestamo);
         }
     }
@@ -48,7 +48,6 @@ public class Socio {
         if (prestamosCorrectos == 5){
             prestamosCorrectos = 0;
             diasExtra++;
-            //notificarPremio()
         }
     }
 

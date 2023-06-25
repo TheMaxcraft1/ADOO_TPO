@@ -2,6 +2,8 @@ package Model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Prestamo {
 
@@ -11,11 +13,15 @@ public class Prestamo {
     private int diasRetraso = 0;
     private LocalDateTime fechaDevolucion;
     private Ejemplar ejemplar;
+    private List<Observer> observadores;
+    private Socio socioAsociado;
 
     public Prestamo() {
         this.fechaInicio = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
         this.diasRetraso = 0;
         this.devuelto = false;
+        this.observadores = new ArrayList<>();
+        this.suscribirObserver(new ObserverPrestamoDevuelto()); //SUSCRIBIR
     }
 
 
@@ -36,8 +42,24 @@ public class Prestamo {
         return devuelto;
     }
 
+    public void notificar(){
+        for (Observer observer: observadores){
+            observer.actualizar(this);
+        }
+    }
+
     public void setDevuelto(boolean devuelto) {
         this.devuelto = devuelto;
+        this.notificar();
+        this.desuscribirObserver(observadores.get(observadores.size()-1)); //DESUSCRIBIR
+    }
+
+    public void suscribirObserver(Observer observer){
+        this.observadores.add(observer);
+    }
+
+    public void desuscribirObserver(Observer observer){
+        this.observadores.remove(observer);
     }
 
     public int getDiasRetraso() {
@@ -63,6 +85,22 @@ public class Prestamo {
 
     public void setEjemplar(Ejemplar ejemplar) {
         this.ejemplar = ejemplar;
+    }
+
+    public List<Observer> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(List<Observer> observadores) {
+        this.observadores = observadores;
+    }
+
+    public Socio getSocioAsociado() {
+        return socioAsociado;
+    }
+
+    public void setSocioAsociado(Socio socioAsociado) {
+        this.socioAsociado = socioAsociado;
     }
 
     public void mostrarPrestamo()
