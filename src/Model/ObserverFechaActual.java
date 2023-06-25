@@ -5,7 +5,7 @@ import Controller.ControllerSocio;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class ObserverFechaActual{
+public class ObserverFechaActual implements Observer{
 
     private ControllerSocio cs = ControllerSocio.getInstances();
     private LocalDateTime ultimaFecha;

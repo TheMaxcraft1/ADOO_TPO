@@ -1,5 +1,5 @@
 package Model;
 
 public interface Observer {
-    void actualizar(Prestamo prestamo);
+    void actualizar() throws Exception;
 }

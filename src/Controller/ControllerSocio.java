@@ -34,7 +34,7 @@ public class ControllerSocio {
         listaSocios.add(nuevoSocio);
     }
 
-    public void setDevuelto(String dni){
+    public void setDevuelto(String dni) throws Exception {
         for (Socio socio:listaSocios){
             if (socio.getDni().equals(dni)) {
                 socio.devolverPrestamo();

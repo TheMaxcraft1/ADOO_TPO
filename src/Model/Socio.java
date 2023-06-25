@@ -39,7 +39,7 @@ public class Socio {
         }
     }
 
-    public void devolverPrestamo(){
+    public void devolverPrestamo() throws Exception {
         historialPrestamo.get(historialPrestamo.size()-1).setDevuelto(true);
         setdiasBloqueo(10);
     }

@@ -13,7 +13,7 @@ public class Prestamo {
     private int diasRetraso = 0;
     private LocalDateTime fechaDevolucion;
     private Ejemplar ejemplar;
-    private List<Observer> observadores;
+    private List<ObserverPrestamoDevuelto> observadores;
     private Socio socioAsociado;
 
     public Prestamo() {
@@ -42,23 +42,24 @@ public class Prestamo {
         return devuelto;
     }
 
-    public void notificar(){
+    public void notificar() throws Exception {
         for (Observer observer: observadores){
-            observer.actualizar(this);
+            observer.actualizar();
         }
     }
 
-    public void setDevuelto(boolean devuelto) {
+    public void setDevuelto(boolean devuelto) throws Exception {
         this.devuelto = devuelto;
         this.notificar();
         this.desuscribirObserver(observadores.get(observadores.size()-1)); //DESUSCRIBIR
     }
 
-    public void suscribirObserver(Observer observer){
+    public void suscribirObserver(ObserverPrestamoDevuelto observer){
+        observer.setPrestamo(this);
         this.observadores.add(observer);
     }
 
-    public void desuscribirObserver(Observer observer){
+    public void desuscribirObserver(ObserverPrestamoDevuelto observer){
         this.observadores.remove(observer);
     }
 
@@ -87,11 +88,11 @@ public class Prestamo {
         this.ejemplar = ejemplar;
     }
 
-    public List<Observer> getObservadores() {
+    public List<ObserverPrestamoDevuelto> getObservadores() {
         return observadores;
     }
 
-    public void setObservadores(List<Observer> observadores) {
+    public void setObservadores(List<ObserverPrestamoDevuelto> observadores) {
         this.observadores = observadores;
     }
 
