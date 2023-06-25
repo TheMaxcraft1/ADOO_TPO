@@ -76,7 +76,7 @@ public class Prestamo {
         else
             System.out.println("NO");
         System.out.println("Dias de retraso en la devolución: " + this.diasRetraso);
-        System.out.println("Ejemplar: " + this.ejemplar.getIdEjemplar() + " " + this.ejemplar.getTitulo());
+        System.out.println("Ejemplar: ID: " + this.ejemplar.getIdEjemplar() + " Titulo: " + this.ejemplar.getTitulo());
         System.out.println("----------------------------------------------------------------------------");
         System.out.println();
     }
