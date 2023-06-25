@@ -2,7 +2,5 @@ package Model;
 
 public abstract class EstrategiaMensaje {
 
-    public void enviarNotificacion(Mensaje mensaje){
-
-    }
+    public abstract void enviarNotificacion(Mensaje mensaje);
 }

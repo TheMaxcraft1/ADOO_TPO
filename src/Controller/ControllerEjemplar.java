@@ -85,26 +85,56 @@ public class ControllerEjemplar {
 
     public List<Ejemplar> buscarEjemplar() {
         List<Ejemplar> resultados = buscarEjemplar(null, null, null, null, null);
+        /*for (Ejemplar ejemplar: resultados)
+        {
+            mostrarEjemplar(ejemplar);
+        }
+
+         */
         return resultados;
     }
 
     public List<Ejemplar> buscarEjemplar(String id) {
         List<Ejemplar> resultados = buscarEjemplar(id, null, null, null, null);
+        /*for (Ejemplar ejemplar: resultados)
+        {
+            mostrarEjemplar(ejemplar);
+        }
+
+         */
         return resultados;
     }
 
     public List<Ejemplar> buscarEjemplar(String id, String titulo) {
         List<Ejemplar> resultados = buscarEjemplar(id, titulo, null, null, null);
+        /*for (Ejemplar ejemplar: resultados)
+        {
+            mostrarEjemplar(ejemplar);
+        }
+
+         */
         return resultados;
     }
 
     public List<Ejemplar> buscarEjemplar(String id, String titulo, String autor) {
         List<Ejemplar> resultados = buscarEjemplar(id, titulo, autor, null, null);
+        /*for (Ejemplar ejemplar: resultados)
+        {
+            mostrarEjemplar(ejemplar);
+        }
+
+         */
         return resultados;
     }
 
     public List<Ejemplar> buscarEjemplar(String id, String titulo, String autor, String fecha) {
         List<Ejemplar> resultados = buscarEjemplar(id, titulo, autor, fecha, null);
+        /*for (Ejemplar ejemplar: resultados)
+        {
+            mostrarEjemplar(ejemplar);
+        }
+
+         */
         return resultados;
     }
 
@@ -123,6 +153,7 @@ public class ControllerEjemplar {
     public Ejemplar buscarEjemplarParaPrestamo(String id){
         for (Ejemplar ejemplar: listaEjemplares){
             if (ejemplar.getIdEjemplar().equals(id))
+                //mostrarEjemplar(ejemplar);
                 return ejemplar;
         }
         System.out.println("No se ha encontrado el ejemplar buscado.");

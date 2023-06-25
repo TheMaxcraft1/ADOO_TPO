@@ -18,12 +18,6 @@ public abstract class Ejemplar {
     private Ubicacion ubicacion;
 
 
-
-
-
-
-
-
     //Getters y Setters
     public String getIdEjemplar() {
         return idEjemplar;
@@ -117,5 +111,6 @@ public abstract class Ejemplar {
         this.deBaja = false;
         this.categoria = categoria;
         this.diasDisp = diasDisp;
+        this.ubicacion = new Ubicacion();
     }
 }

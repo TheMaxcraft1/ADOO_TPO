@@ -42,11 +42,13 @@ public class ControllerSocio {
     }
 
     public void generarPrestamo(String dni, Ejemplar ejemplar) {
-
-        for (Socio socio : listaSocios) {
-            if (socio.getDni().equals(dni))
-                socio.generarPrestamo(ejemplar);
-        } //HAY QUE MODIFICAR EL ESTADO DEL EJEMPLAR A EN PRESTAMO == TRUE
+        if(!ejemplar.isDeBaja() && !ejemplar.isEnPrestamo()){ //Si el ejemplar no esta en prestamo ni de baja
+            for (Socio socio : listaSocios) {
+                if (socio.getDni().equals(dni))
+                    socio.generarPrestamo(ejemplar);
+            }
+            ejemplar.setEnPrestamo(true);
+        }
     }
 
     public List<Socio> getListaSocios() {
