@@ -6,6 +6,13 @@ public class Ubicacion {
 
     private AdaptadorUbicacion adapter;
 
+    public Ubicacion(AdaptadorUbicacion adapter)
+    {
+        this.adapter = adapter;
+    }
+
+    public Ubicacion(){}
+
     public double getLatitud() {
         return latitud;
     }

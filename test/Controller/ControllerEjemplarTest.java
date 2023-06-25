@@ -153,6 +153,8 @@ class ControllerEjemplarTest {
 
         Ejemplar ejemplarTest = new RevistaEspecializada("4", "RevistaE 2", "English", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada, 5);
 
+        ce.mostrarEjemplar(ce.buscarEjemplar("4").get(0));
+
         assertEquals(ejemplarTest.getIdEjemplar(), ce.buscarEjemplar("4", "RevistaE 2", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada).get(0).getIdEjemplar());
         assertEquals(ejemplarTest.getTema(), ce.buscarEjemplar("4", "RevistaE 2", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada).get(0).getTema());
         assertEquals(ejemplarTest.getTitulo(), ce.buscarEjemplar("4", "RevistaE 2", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada).get(0).getTitulo());

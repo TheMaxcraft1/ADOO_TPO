@@ -93,7 +93,7 @@ public abstract class Ejemplar {
     }
 
     public Ubicacion getUbicacion() {
-        //ubicacion.setUbicacion(); //Actualizamos ubicacion
+        ubicacion.setUbicacion(); //Actualizamos ubicacion
         return ubicacion;
     }
 
@@ -111,6 +111,6 @@ public abstract class Ejemplar {
         this.deBaja = false;
         this.categoria = categoria;
         this.diasDisp = diasDisp;
-        this.ubicacion = new Ubicacion();
+        this.ubicacion = new Ubicacion(new AdaptadorUbicacion(new SistemaExternoUbicacion()));
     }
 }

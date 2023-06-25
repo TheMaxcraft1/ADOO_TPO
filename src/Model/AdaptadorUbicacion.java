@@ -9,5 +9,10 @@ public class AdaptadorUbicacion {
         return ubicacion;
     }
 
+    public AdaptadorUbicacion(SistemaExternoUbicacion sistema)
+    {
+        this.sistema = sistema;
+    }
+
 }
 
