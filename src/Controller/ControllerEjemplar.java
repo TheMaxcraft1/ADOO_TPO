@@ -62,14 +62,14 @@ public class ControllerEjemplar {
 
     public void modificarEstadoEjemplar(String IDEjemplar, boolean deBaja, boolean enPrestamo){
         for (Ejemplar ejemplar: listaEjemplares){ //POR CADA EJEMPLAR EN LA LISTA DE EJEMPLARES
-            if (ejemplar.getIdEjemplar() == IDEjemplar){ //SE BUSCA EL QUE TENGA EL MISMO ID (SERA UNO SOLO)
+            if (ejemplar.getIdEjemplar().equals(IDEjemplar)){ //SE BUSCA EL QUE TENGA EL MISMO ID (SERA UNO SOLO)
                 ejemplar.setDeBaja(deBaja); //COLOCAMOS SI ESTA DE BAJA O NO
                 ejemplar.setEnPrestamo(enPrestamo); //COLOCAMOS SI ESTA EN PRESTAMO O NO
             }
         }
     }
 
-    public void buscarEjemplar(String id, String titulo, String autor, String fecha, tipoEjemplar categoria){
+    public List<Ejemplar> buscarEjemplar(String id, String titulo, String autor, String fecha, tipoEjemplar categoria){
         List<Ejemplar> resultados = new ArrayList<>();
         for (Ejemplar ejemplar : listaEjemplares) { //POR CADA EJEMPLAR EN LA LISTA DE EJEMPLARES
             if  ((id == null || ejemplar.getIdEjemplar().equals(id)) && (titulo == null || ejemplar.getTitulo().equals(titulo)) && //SE VERIFICA QUE EL VALOR BUSCADO O VALGA NULL, ES DECIR QUE NO SE PASO COMO PARAMETRO, O SEA IGUAL AL PARAMETRO QUE SE PASA.
@@ -79,9 +79,35 @@ public class ControllerEjemplar {
         }
         for (Ejemplar ejemplar: resultados){
             ejemplar.getUbicacion();
-            mostrarEjemplar(ejemplar);
         }
+        return resultados;
     }
+
+    public List<Ejemplar> buscarEjemplar() {
+        List<Ejemplar> resultados = buscarEjemplar(null, null, null, null, null);
+        return resultados;
+    }
+
+    public List<Ejemplar> buscarEjemplar(String id) {
+        List<Ejemplar> resultados = buscarEjemplar(id, null, null, null, null);
+        return resultados;
+    }
+
+    public List<Ejemplar> buscarEjemplar(String id, String titulo) {
+        List<Ejemplar> resultados = buscarEjemplar(id, titulo, null, null, null);
+        return resultados;
+    }
+
+    public List<Ejemplar> buscarEjemplar(String id, String titulo, String autor) {
+        List<Ejemplar> resultados = buscarEjemplar(id, titulo, autor, null, null);
+        return resultados;
+    }
+
+    public List<Ejemplar> buscarEjemplar(String id, String titulo, String autor, String fecha) {
+        List<Ejemplar> resultados = buscarEjemplar(id, titulo, autor, fecha, null);
+        return resultados;
+    }
+
     public void mostrarEjemplar(Ejemplar ejemplar){
         System.out.println("ID:" + ejemplar.getIdEjemplar());
         System.out.println("Titulo: " + ejemplar.getTitulo());
@@ -92,5 +118,17 @@ public class ControllerEjemplar {
         System.out.println("Ubicacion: Latitud: " + ejemplar.getUbicacion().getLatitud() + "| Longitud: " +ejemplar.getUbicacion().getLongitud());
         System.out.println("------------------------------------------------------------------------------------------------------------------");
         System.out.println();
+    }
+
+    public Ejemplar buscarEjemplarParaPrestamo(String id){
+        for (Ejemplar ejemplar: listaEjemplares){
+            if (ejemplar.getIdEjemplar().equals(id))
+                return ejemplar;
+        }
+        System.out.println("No se ha encontrado el ejemplar buscado.");
+        return null;
+    }
+    public List<Ejemplar> getListaEjemplares() {
+        return listaEjemplares;
     }
 }

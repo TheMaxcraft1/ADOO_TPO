@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Socio {
     //getter y setters
@@ -34,8 +35,8 @@ public class Socio {
         if (historialPrestamo.isEmpty() || historialPrestamo.get(historialPrestamo.size()).isDevuelto()){
         Prestamo nuevoPrestamo = new Prestamo();
         nuevoPrestamo.setEjemplar(ejemplar);
-        historialPrestamo.add(nuevoPrestamo);
         nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
+        historialPrestamo.add(nuevoPrestamo);
         }
     }
 
@@ -119,5 +120,16 @@ public class Socio {
         this.telefono = telefono;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Socio socio = (Socio) o;
+        return diasExtra == socio.diasExtra && prestamosCorrectos == socio.prestamosCorrectos && Objects.equals(dni, socio.dni) && Objects.equals(nombre, socio.nombre) && Objects.equals(apellido, socio.apellido) && Objects.equals(mail, socio.mail) && Objects.equals(telefono, socio.telefono) && medioPreferido == socio.medioPreferido && Objects.equals(estado, socio.estado) && Objects.equals(historialPrestamo, socio.historialPrestamo);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(dni, nombre, apellido, mail, telefono, medioPreferido, diasExtra, prestamosCorrectos, estado, historialPrestamo);
+    }
 }

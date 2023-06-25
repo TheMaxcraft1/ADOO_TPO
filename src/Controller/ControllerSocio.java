@@ -12,6 +12,8 @@ public class ControllerSocio {
     List<Socio> listaSocios = new ArrayList<>();
     private static ControllerSocio CONTROLLERSOCIO = null;
 
+    private ControllerEjemplar controllerEjemplar;
+
     public static synchronized ControllerSocio getInstances() throws Exception {
         if (CONTROLLERSOCIO == null) CONTROLLERSOCIO = new ControllerSocio();
         return CONTROLLERSOCIO;
@@ -28,7 +30,6 @@ public class ControllerSocio {
         nuevoSocio.setMedioPreferido(medioPreferido);
 
         listaSocios.add(nuevoSocio);
-
     }
 
     public ArrayList<Prestamo> obtenerHistorialPrestamos(String dni) {
@@ -41,10 +42,11 @@ public class ControllerSocio {
     }
 
     public void generarPrestamo(String dni, Ejemplar ejemplar) {
+
         for (Socio socio : listaSocios) {
             if (socio.getDni().equals(dni))
                 socio.generarPrestamo(ejemplar);
-        }
+        } //HAY QUE MODIFICAR EL ESTADO DEL EJEMPLAR A EN PRESTAMO == TRUE
     }
 
     public List<Socio> getListaSocios() {

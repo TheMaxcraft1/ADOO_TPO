@@ -99,7 +99,7 @@ public abstract class Ejemplar {
     }
 
     public Ubicacion getUbicacion() {
-        ubicacion.setUbicacion(); //Actualizamos ubicacion
+        //ubicacion.setUbicacion(); //Actualizamos ubicacion
         return ubicacion;
     }
 
