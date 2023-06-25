@@ -146,7 +146,7 @@ public class ControllerEjemplar {
         System.out.println("Autor:" + ejemplar.getAutor());
         System.out.println("Fecha de publicacion:" + ejemplar.getFechaPublicacion());
         System.out.println("Categoria" + ejemplar.getCategoria());
-        System.out.println("Ubicacion: Latitud: " + ejemplar.getUbicacion().getLatitud() + "| Longitud: " +ejemplar.getUbicacion().getLongitud());
+        System.out.println("Ubicacion: Latitud: " + ejemplar.getUbicacion().getLatitud() + " | Longitud: " +ejemplar.getUbicacion().getLongitud());
         System.out.println("------------------------------------------------------------------------------------------------------------------");
         System.out.println();
     }

@@ -67,6 +67,7 @@ public class Prestamo {
 
     public void mostrarPrestamo()
     {
+        System.out.println();
         System.out.println("Fecha de inicio Prestamo: " + this.fechaInicio.toString());
         System.out.println("Fecha de devolución del ejemplar: " + this.fechaDevolucion.toString());
         System.out.print("¿El ejemplar ha sido devuelto? ");

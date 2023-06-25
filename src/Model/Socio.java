@@ -31,7 +31,7 @@ public class Socio {
 
     //ASUMIMOS QUE NO SE PUEDEN TENER MAS DE UN PRE
     public void generarPrestamo(Ejemplar ejemplar){
-        if (historialPrestamo.isEmpty()){ //|| historialPrestamo.get(historialPrestamo.size()-1).isDevuelto()){
+        if (historialPrestamo.isEmpty() || historialPrestamo.get(historialPrestamo.size()-1).isDevuelto()){
             Prestamo nuevoPrestamo = new Prestamo();
             nuevoPrestamo.setEjemplar(ejemplar);
             nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));

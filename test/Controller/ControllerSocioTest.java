@@ -139,12 +139,7 @@ class ControllerSocioTest {
                 tipoEjemplar.Libro, 4) {
         };
         cs.generarPrestamo("1", libro1);
-
-        // System.out.println(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getDiasRetraso());
-
-
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0), cs.listaSocios.get(0).getHistorialPrestamo().get(0));
-
     }
 
     @Test
@@ -159,19 +154,12 @@ class ControllerSocioTest {
         ce.altaEjemplar("2", "Chemistry for dummies", "Chemistry", "Alfred", "20/09/2020", tipoEjemplar.Libro);
 
         cs.generarPrestamo("44483055", ce.buscarEjemplarParaPrestamo("1"));
-
         cs.setDevuelto("44483055");
 
         cs.generarPrestamo("44483055", ce.buscarEjemplarParaPrestamo("2"));
 
-
-
-
         //ESPECTED RESULTS
         cs.mostrarHistorialPrestamos("44483055");
-        //System.out.println(cs.obtenerHistorialPrestamos("44483055").size());
-
-
 
     }
 }

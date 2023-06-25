@@ -43,19 +43,23 @@ public class ControllerSocio {
 
     public void setDevuelto(String dni){
         for (Socio socio:listaSocios){
-            if (socio.getDni().equals(dni))
+            if (socio.getDni().equals(dni)) {
                 socio.devolverPrestamo();
-            socio.getHistorialPrestamo().get(socio.getHistorialPrestamo().size()).getEjemplar().setEnPrestamo(false);
+                socio.getHistorialPrestamo().get(socio.getHistorialPrestamo().size() - 1).getEjemplar().setEnPrestamo(false);
+            }
         }
     }
 
     public void generarPrestamo(String dni, Ejemplar ejemplar) {
         if(!ejemplar.isDeBaja() && !ejemplar.isEnPrestamo()){ //Si el ejemplar no esta en prestamo ni de baja
             for (Socio socio : listaSocios) {
-                if (socio.getDni().equals(dni))
-                    socio.generarPrestamo(ejemplar);
+                if (socio.getDni().equals(dni)){
+                    if (socio.isHabilitado()){
+                        socio.generarPrestamo(ejemplar);
+                        ejemplar.setEnPrestamo(true);
+                    }
+                }
             }
-            ejemplar.setEnPrestamo(true);
         }
     }
 
@@ -82,13 +86,13 @@ public class ControllerSocio {
         }
     }
 
-    public void mostrarHistorialPrestamos(String dni)
-    {
-        for( Socio socio : listaSocios)
-        {
-            if (socio.getDni().equals(dni))
-            {
+    public void mostrarHistorialPrestamos(String dni) {
+        for( Socio socio : listaSocios) {
+            if (socio.getDni().equals(dni)) {
+                System.out.println();
                 System.out.println("Historial de prestamos del socio: " + socio.getNombre() + " " + socio.getApellido());
+                System.out.println("-----------------------------------------------");
+                System.out.println();
                 List<Prestamo> historialPrestamos = new ArrayList<>();
                 historialPrestamos.addAll(socio.getHistorialPrestamo());
                 for( Prestamo prestamo: historialPrestamos)
