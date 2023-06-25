@@ -1,7 +1,5 @@
 package Model;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +15,8 @@ public class Socio {
     private Integer prestamosCorrectos;
     private List<Prestamo> historialPrestamo = new ArrayList<>();
     private Boolean habilitado = true;
+
+    private Integer diasBloqueo;
 
 
 
@@ -91,12 +91,12 @@ public class Socio {
         this.medioPreferido = medioPreferido;
     }
 
-    public int getDiasPrestamo() {
-        return diasExtra;
+    public int getdiasBloqueo() {
+        return diasBloqueo;
     }
 
-    public void setDiasPrestamo(int diasPrestamo) {
-        this.diasExtra = diasPrestamo;
+    public void setdiasBloqueo(int diasPrestamo) {
+        this.diasBloqueo = diasPrestamo;
     }
 
     public int getPrestamosCorrectos() {
