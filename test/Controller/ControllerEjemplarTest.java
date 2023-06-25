@@ -162,4 +162,21 @@ class ControllerEjemplarTest {
         assertEquals(ejemplarTest.getFechaPublicacion(), ce.buscarEjemplar("4", "RevistaE 2", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada).get(0).getFechaPublicacion());
         assertEquals(ejemplarTest.getCategoria(), ce.buscarEjemplar("4", "RevistaE 2", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada).get(0).getCategoria());
     }
+
+    @Test
+    void buscarEjemplar() throws Exception{ //Test para mostrar la lista de todos los ejemplares
+        ControllerEjemplar ce = ControllerEjemplar.getInstances();
+
+        ce.altaEjemplar("1", "Libro 1", "Physics", "Richard", "14/06/2002", tipoEjemplar.Libro);
+        ce.altaEjemplar("2", "Libro 2", "Chemistry", "Alfred", "20/09/2020", tipoEjemplar.Libro);
+        ce.altaEjemplar("3", "RevistaE 1", "Math", "Richard", "14/06/2002", tipoEjemplar.RevistaEspecializada);
+        ce.altaEjemplar("4", "RevistaE 2", "English", "Alfred", "20/09/2020", tipoEjemplar.RevistaEspecializada);
+        ce.altaEjemplar("5", "Revista 1", "Algebra", "Richard", "14/06/2002", tipoEjemplar.Revista);
+        ce.altaEjemplar("6", "Revista 2", "Science", "Alfred", "20/09/2020", tipoEjemplar.Revista);
+        ce.altaEjemplar("7", "Diario 1", "Computers", "Richard", "14/06/2002", tipoEjemplar.Diario);
+        ce.altaEjemplar("8", "Diario 2", "French", "Alfred", "20/09/2020", tipoEjemplar.Diario);
+
+        ce.buscarEjemplar();
+
+    }
 }

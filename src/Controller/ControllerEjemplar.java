@@ -79,6 +79,7 @@ public class ControllerEjemplar {
         }
         for (Ejemplar ejemplar: resultados){
             ejemplar.getUbicacion();
+            mostrarEjemplar(ejemplar);
         }
         return resultados;
     }
