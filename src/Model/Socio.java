@@ -11,12 +11,12 @@ public class Socio {
     private String mail;
     private String telefono;
     private MediosContacto medioPreferido;
-    private Integer diasExtra;
-    private Integer prestamosCorrectos;
+    private Integer diasExtra = 0;
+    private Integer prestamosCorrectos = 0;
     private List<Prestamo> historialPrestamo = new ArrayList<>();
     private Boolean habilitado = true;
 
-    private Integer diasBloqueo;
+    private Integer diasBloqueo = 10;
 
 
 

@@ -12,8 +12,13 @@ public class AngusMail {
 
     public void enviarMensaje(Mensaje mensaje)
     {
+        System.out.println();
         System.out.println("Enviando Email a la direccion: " + this.email);
-        System.out.println("Mensaje enviado correctamente");
+        System.out.println("ASUNTO: " + mensaje.getMotivo() + "\n" + "CUERPO: "+ mensaje.getCuerpo());
+        System.out.println("E-mail enviado correctamente");
+        System.out.println();
+        System.out.println("-------------------------------------------------------------------------");
+
     }
 
     public String getEmail() {

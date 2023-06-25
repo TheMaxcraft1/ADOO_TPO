@@ -180,6 +180,36 @@ class ControllerSocioTest {
             System.out.println(socio.getTelefono());
         }
     }
+
+
+    @Test
+    void notificacionDevueltoTest() throws Exception {
+        ControllerSocio cs = ControllerSocio.getInstances();
+        cs.altaSocio("44483055", "Nicolas", "Irigoyen", "nicolas.irigoyen2002@gmai.com", "1157035954", MediosContacto.SMS);
+        cs.altaSocio("235655747", "Maximo", "Fain", "maximo.fain@gmai.com", "55777144741", MediosContacto.MAIL);
+        cs.altaSocio("55977742", "Timoteo", "Lombardo", "timoteo.lombardo@gmai.com", "548477751", MediosContacto.WPP);
+
+        ControllerEjemplar ce = ControllerEjemplar.getInstances();
+        ce.altaEjemplar("1", "Physics for dummies", "Physics", "Richard", "14/06/2002", tipoEjemplar.Libro);
+        ce.altaEjemplar("2", "Chemistry for dummies", "Chemistry", "Alfred", "20/09/2020", tipoEjemplar.Libro);
+
+        cs.generarPrestamo("44483055", ce.buscarEjemplarParaPrestamo("1"));
+        cs.generarPrestamo("235655747", ce.buscarEjemplarParaPrestamo("2"));
+
+
+        Ejemplar libro1 = new Libro("1", "Physics for dummies", "Physics", "Richard", "14/06/2002", tipoEjemplar.Libro, 10);
+        Ejemplar libro2 = new Libro("2", "Chemistry for dummies", "Chemistry", "Alfred", "20/09/2020", tipoEjemplar.Libro, 10);
+
+        //Creado de prestamos
+
+        cs.setDevuelto("44483055");
+        cs.setDevuelto("235655747");
+
+
+        cs.generarPrestamo("55977742", ce.buscarEjemplarParaPrestamo("1"));
+        cs.setDevuelto("55977742");
+
+    }
 }
 
 
