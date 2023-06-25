@@ -11,24 +11,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerSocioTest {
-/*
-package Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-class VentasControllerTest {
-
-    @org.junit.jupiter.api.Test
-    void agregarRemito() {
-        VentasController VC = VentasController.getInstance();
-        RemitosEmitidosDTO r = new RemitosEmitidosDTO();
-        VC.agregarRemito("1234", r);
-
-        assertEquals(2, VC.agregarRemito("1234", r));
-
-    }
-}
-* */
-
     @Test
     void cargarSociosTest() throws Exception {
         ControllerSocio cs = ControllerSocio.getInstances();
@@ -164,4 +146,34 @@ class VentasControllerTest {
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0), cs.listaSocios.get(0).getHistorialPrestamo().get(0));
 
     }
+
+    @Test
+    void mostrarHistorialPrestamos() throws Exception {
+        ControllerSocio cs = ControllerSocio.getInstances();
+        cs.altaSocio("44483055", "Nicolas", "Irigoyen", "nicolas.irigoyen2002@gmai.com", "1157035954", MediosContacto.SMS);
+        cs.altaSocio("235655747", "Maximo", "Fain", "maximo.fain@gmai.com", "55777144741", MediosContacto.MAIL);
+        cs.altaSocio("55977742", "Timoteo", "Lombardo", "timoteo.lombardo@gmai.com", "548477751", MediosContacto.WPP);
+
+        ControllerEjemplar ce = ControllerEjemplar.getInstances();
+        ce.altaEjemplar("1", "Physics for dummies", "Physics", "Richard", "14/06/2002", tipoEjemplar.Libro);
+        ce.altaEjemplar("2", "Chemistry for dummies", "Chemistry", "Alfred", "20/09/2020", tipoEjemplar.Libro);
+
+        cs.generarPrestamo("44483055", ce.buscarEjemplarParaPrestamo("1"));
+
+        cs.setDevuelto("44483055");
+
+        cs.generarPrestamo("44483055", ce.buscarEjemplarParaPrestamo("2"));
+
+
+
+
+        //ESPECTED RESULTS
+        cs.mostrarHistorialPrestamos("44483055");
+        //System.out.println(cs.obtenerHistorialPrestamos("44483055").size());
+
+
+
     }
+}
+
+

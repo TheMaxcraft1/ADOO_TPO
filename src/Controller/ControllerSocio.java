@@ -74,4 +74,26 @@ public class ControllerSocio {
     public static void setCONTROLLERSOCIO(ControllerSocio CONTROLLERSOCIO) {
         ControllerSocio.CONTROLLERSOCIO = CONTROLLERSOCIO;
     }
+
+    public void habilitarSocio(String dni){
+        for (Socio socio:listaSocios){
+            if (socio.getDni().equals(dni))
+                socio.setHabilitado(true);
+        }
+    }
+
+    public void mostrarHistorialPrestamos(String dni)
+    {
+        for( Socio socio : listaSocios)
+        {
+            if (socio.getDni().equals(dni))
+            {
+                System.out.println("Historial de prestamos del socio: " + socio.getNombre() + " " + socio.getApellido());
+                List<Prestamo> historialPrestamos = new ArrayList<>();
+                historialPrestamos.addAll(socio.getHistorialPrestamo());
+                for( Prestamo prestamo: historialPrestamos)
+                    prestamo.mostrarPrestamo();
+            }
+        }
+    }
 }

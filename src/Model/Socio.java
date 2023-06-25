@@ -17,31 +17,39 @@ public class Socio {
     private MediosContacto medioPreferido;
     private int diasExtra;
     private int prestamosCorrectos;
-    private EstadoSocio estado;
     private List<Prestamo> historialPrestamo = new ArrayList<>();
+    private boolean habilitado = true;
 
 
     //METODOS
-    public void aumentarDiasPrestamo(Integer diasPrestamo, Integer prestamosCorrectos){
 
-    }
-
-    public void decrementarDiasPrestamo(Integer diasPrestamo, Integer prestamosCorrectos){
-
+    public void decrementarDiasPrestamo(){
+        diasExtra--;
+        if (diasExtra == 0)
+            setHabilitado(false);
     }
 
     //ASUMIMOS QUE NO SE PUEDEN TENER MAS DE UN PRE
     public void generarPrestamo(Ejemplar ejemplar){
-        if (historialPrestamo.isEmpty() || historialPrestamo.get(historialPrestamo.size()).isDevuelto()){
-        Prestamo nuevoPrestamo = new Prestamo();
-        nuevoPrestamo.setEjemplar(ejemplar);
-        nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
-        historialPrestamo.add(nuevoPrestamo);
+        if (historialPrestamo.isEmpty()){ //|| historialPrestamo.get(historialPrestamo.size()-1).isDevuelto()){
+            Prestamo nuevoPrestamo = new Prestamo();
+            nuevoPrestamo.setEjemplar(ejemplar);
+            nuevoPrestamo.setFechaDevolucion(nuevoPrestamo.getFechaInicio().plusDays(diasExtra + ejemplar.getDiasDisp()));
+            historialPrestamo.add(nuevoPrestamo);
         }
     }
 
     public void devolverPrestamo(){
-        historialPrestamo.get(historialPrestamo.size()).setDevuelto(true);
+        historialPrestamo.get(historialPrestamo.size()-1).setDevuelto(true);
+    }
+
+    public void sumarPrestamoCorrecto(){
+        prestamosCorrectos++;
+        if (prestamosCorrectos == 5){
+            prestamosCorrectos = 0;
+            diasExtra++;
+            //notificarPremio()
+        }
     }
 
     public String getDni() {
@@ -100,14 +108,6 @@ public class Socio {
         this.prestamosCorrectos = prestamosCorrectos;
     }
 
-    public EstadoSocio getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoSocio estado) {
-        this.estado = estado;
-    }
-
     public List<Prestamo> getHistorialPrestamo() {
         return historialPrestamo;
     }
@@ -129,11 +129,27 @@ public class Socio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Socio socio = (Socio) o;
-        return diasExtra == socio.diasExtra && prestamosCorrectos == socio.prestamosCorrectos && Objects.equals(dni, socio.dni) && Objects.equals(nombre, socio.nombre) && Objects.equals(apellido, socio.apellido) && Objects.equals(mail, socio.mail) && Objects.equals(telefono, socio.telefono) && medioPreferido == socio.medioPreferido && Objects.equals(estado, socio.estado) && Objects.equals(historialPrestamo, socio.historialPrestamo);
+        return diasExtra == socio.diasExtra && prestamosCorrectos == socio.prestamosCorrectos && Objects.equals(dni, socio.dni) && Objects.equals(nombre, socio.nombre) && Objects.equals(apellido, socio.apellido) && Objects.equals(mail, socio.mail) && Objects.equals(telefono, socio.telefono) && medioPreferido == socio.medioPreferido && Objects.equals(historialPrestamo, socio.historialPrestamo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dni, nombre, apellido, mail, telefono, medioPreferido, diasExtra, prestamosCorrectos, estado, historialPrestamo);
+        return Objects.hash(dni, nombre, apellido, mail, telefono, medioPreferido, diasExtra, prestamosCorrectos, historialPrestamo);
+    }
+
+    public int getDiasExtra() {
+        return diasExtra;
+    }
+
+    public void setDiasExtra(int diasExtra) {
+        this.diasExtra = diasExtra;
+    }
+
+    public boolean isHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
     }
 }

@@ -64,4 +64,19 @@ public class Prestamo {
     public void setEjemplar(Ejemplar ejemplar) {
         this.ejemplar = ejemplar;
     }
+
+    public void mostrarPrestamo()
+    {
+        System.out.println("Fecha de inicio Prestamo: " + this.fechaInicio.toString());
+        System.out.println("Fecha de devolución del ejemplar: " + this.fechaDevolucion.toString());
+        System.out.print("¿El ejemplar ha sido devuelto? ");
+        if(this.devuelto)
+            System.out.println("SI");
+        else
+            System.out.println("NO");
+        System.out.println("Dias de retraso en la devolución: " + this.diasRetraso);
+        System.out.println("Ejemplar: " + this.ejemplar.getIdEjemplar() + " " + this.ejemplar.getTitulo());
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println();
+    }
 }
