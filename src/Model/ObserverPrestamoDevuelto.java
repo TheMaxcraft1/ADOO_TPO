@@ -28,6 +28,7 @@ public class ObserverPrestamoDevuelto implements Observer{
                 case SMS -> mensajeador.setMedioMensaje(new Sms(new AdaptadorTwilio(new TwilioSDK(contacto.getTelefono()))));
             }
             mensajeador.enviarMensaje(mensaje);
+            contacto.sumarPrestamoCorrecto();
         }
     }
 
