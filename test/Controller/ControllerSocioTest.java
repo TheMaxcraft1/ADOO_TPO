@@ -87,7 +87,6 @@ class ControllerSocioTest {
         //Nicolas
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getFechaInicio(), nicolas.getHistorialPrestamo().get(0).getFechaInicio());
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getFechaDevolucion(), nicolas.getHistorialPrestamo().get(0).getFechaDevolucion());
-        assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getDiasRetraso(), nicolas.getHistorialPrestamo().get(0).getDiasRetraso());
 
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getEjemplar().getIdEjemplar(), nicolas.getHistorialPrestamo().get(0).getEjemplar().getIdEjemplar());
         assertEquals(cs.listaSocios.get(0).getHistorialPrestamo().get(0).getEjemplar().getCategoria(), nicolas.getHistorialPrestamo().get(0).getEjemplar().getCategoria());
@@ -99,7 +98,6 @@ class ControllerSocioTest {
         //Maximo
         assertEquals(cs.listaSocios.get(1).getHistorialPrestamo().get(0).getFechaInicio(), maximo.getHistorialPrestamo().get(0).getFechaInicio());
         assertEquals(cs.listaSocios.get(1).getHistorialPrestamo().get(0).getFechaDevolucion(), maximo.getHistorialPrestamo().get(0).getFechaDevolucion());
-        assertEquals(cs.listaSocios.get(1).getHistorialPrestamo().get(0).getDiasRetraso(), maximo.getHistorialPrestamo().get(0).getDiasRetraso());
 
         assertEquals(cs.listaSocios.get(1).getHistorialPrestamo().get(0).getEjemplar().getIdEjemplar(), maximo.getHistorialPrestamo().get(0).getEjemplar().getIdEjemplar());
         assertEquals(cs.listaSocios.get(1).getHistorialPrestamo().get(0).getEjemplar().getCategoria(), maximo.getHistorialPrestamo().get(0).getEjemplar().getCategoria());

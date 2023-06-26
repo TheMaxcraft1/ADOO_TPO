@@ -182,4 +182,52 @@ class ControllerEjemplarTest {
 
     }
 
+    @Test
+    void cambiarEstadoEjemplarTest() throws Exception {
+        ControllerEjemplar ce = ControllerEjemplar.getInstances();
+        ce.altaEjemplar("1", "Libro 1", "Physics", "Richard", "14/06/2002", tipoEjemplar.Libro);
+
+        System.out.println("En prestamo: " + ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        System.out.println("De baja: " + ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        assertFalse(ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        assertFalse(ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        System.out.println();
+        System.out.println("----------------------------------------------");
+        System.out.println();
+
+        ce.modificarEstadoEjemplar("1", true, false);
+
+        System.out.println("En prestamo: " + ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        System.out.println("De baja: " + ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        assertFalse(ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        assertTrue(ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        ce.modificarEstadoEjemplar("1", false, true);
+
+        System.out.println();
+        System.out.println("----------------------------------------------");
+        System.out.println();
+
+        System.out.println("En prestamo: " + ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        System.out.println("De baja: " + ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        assertTrue(ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        assertFalse(ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        System.out.println();
+        System.out.println("----------------------------------------------");
+        System.out.println();
+
+        ce.modificarEstadoEjemplar("1", true, true);
+
+        System.out.println("En prestamo: " + ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        System.out.println("De baja: " + ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+
+        assertTrue(ce.buscarEjemplarParaPrestamo("1").isEnPrestamo());
+        assertTrue(ce.buscarEjemplarParaPrestamo("1").isDeBaja());
+    }
+
 }
