@@ -15,7 +15,6 @@ public class Socio {
     private Integer prestamosCorrectos = 0;
     private List<Prestamo> historialPrestamo = new ArrayList<>();
     private Boolean habilitado = true;
-
     private Integer diasBloqueo = 10;
 
 
@@ -104,16 +103,8 @@ public class Socio {
         return prestamosCorrectos;
     }
 
-    public void setPrestamosCorrectos(int prestamosCorrectos) {
-        this.prestamosCorrectos = prestamosCorrectos;
-    }
-
     public List<Prestamo> getHistorialPrestamo() {
         return historialPrestamo;
-    }
-
-    public void setHistorialPrestamo(List<Prestamo> historialPrestamo) {
-        this.historialPrestamo = historialPrestamo;
     }
 
     public String getTelefono() {

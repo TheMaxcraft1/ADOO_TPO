@@ -1,9 +1,4 @@
 package Model;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Ejemplar {
     private String idEjemplar;
     private String titulo;
@@ -14,7 +9,6 @@ public abstract class Ejemplar {
     private boolean deBaja;
     private tipoEjemplar categoria;
     private Integer diasDisp;
-
     private Ubicacion ubicacion;
 
 
@@ -23,42 +17,24 @@ public abstract class Ejemplar {
         return idEjemplar;
     }
 
-    public void setIdEjemplar(String idEjemplar) {
-        this.idEjemplar = idEjemplar;
-    }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
 
     public String getTema() {
         return tema;
-    }
-
-    public void setTema(String tema) {
-        this.tema = tema;
     }
 
     public String getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
 
     public String getFechaPublicacion() {
         return fechaPublicacion;
     }
-
-    public void setFechaPublicacion(String fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
-    }
-
 
     public boolean isEnPrestamo() {
         return enPrestamo;
@@ -80,10 +56,6 @@ public abstract class Ejemplar {
         return categoria;
     }
 
-    public void setCategoria(tipoEjemplar categoria) {
-        this.categoria = categoria;
-    }
-
     public Integer getDiasDisp() {
         return diasDisp;
     }
@@ -95,10 +67,6 @@ public abstract class Ejemplar {
     public Ubicacion getUbicacion() {
         ubicacion.setUbicacion(); //Actualizamos ubicacion
         return ubicacion;
-    }
-
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
     }
 
     public Ejemplar(String idEjemplar, String titulo, String tema, String autor, String fechaPublicacion, tipoEjemplar categoria, Integer diasDisp) {

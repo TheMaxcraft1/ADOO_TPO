@@ -14,8 +14,6 @@ public class ControllerSocio {
     List<Socio> listaSocios = new ArrayList<>();
     private static ControllerSocio CONTROLLERSOCIO = null;
 
-    private ControllerEjemplar controllerEjemplar;
-
     public static synchronized ControllerSocio getInstances() throws Exception {
         if (CONTROLLERSOCIO == null) CONTROLLERSOCIO = new ControllerSocio();
         return CONTROLLERSOCIO;
@@ -60,18 +58,6 @@ public class ControllerSocio {
         return listaSocios;
     }
 
-    public void setListaSocios(List<Socio> listaSocios) {
-        this.listaSocios = listaSocios;
-    }
-
-    public static ControllerSocio getCONTROLLERSOCIO() {
-        return CONTROLLERSOCIO;
-    }
-
-    public static void setCONTROLLERSOCIO(ControllerSocio CONTROLLERSOCIO) {
-        ControllerSocio.CONTROLLERSOCIO = CONTROLLERSOCIO;
-    }
-
     public void habilitarSocio(String dni){
         for (Socio socio:listaSocios){
             if (socio.getDni().equals(dni))
@@ -99,7 +85,6 @@ public class ControllerSocio {
             if(!ultimoPrestamo.isDevuelto()) {
                 if (ultimoPrestamo.getFechaDevolucion().isEqual(fechaActual.minusDays(2))) {
                     return true;
-                    //notificarEntregaProxima();
                 }
             }
         return false;

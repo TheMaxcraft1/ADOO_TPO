@@ -7,16 +7,13 @@ public class Wpp extends EstrategiaMensaje{
     {
         this.adaptadorTwilio = adaptadorTwilio;
     }
-
     @Override
     public void enviarNotificacion(Mensaje mensaje) {
         adaptadorTwilio.enviarWPP(mensaje);
     }
-
     public AdaptadorTwilio getAdaptadorTwilio() {
         return adaptadorTwilio;
     }
-
     public void setAdaptadorTwilio(AdaptadorTwilio adaptadorTwilio) {
         this.adaptadorTwilio = adaptadorTwilio;
     }

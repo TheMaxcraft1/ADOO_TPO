@@ -9,14 +9,6 @@ public class ObserverPrestamoDevuelto implements Observer{
 
     private Prestamo prestamo;
 
-    public Integer getDiasDeAviso() {
-        return diasDeAviso;
-    }
-
-    public void setDiasDeAviso(Integer diasDeAviso) {
-        this.diasDeAviso = diasDeAviso;
-    }
-
     @Override
     public void actualizar() {
         if (prestamo.isDevuelto() && (LocalDateTime.now().isBefore(prestamo.getFechaDevolucion()) || prestamo.getFechaDevolucion().equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS)))) {
@@ -37,10 +29,6 @@ public class ObserverPrestamoDevuelto implements Observer{
             }
             mensajeador.enviarMensaje(mensaje);
         }
-    }
-
-    public Prestamo getPrestamo() {
-        return prestamo;
     }
 
     public void setPrestamo(Prestamo prestamo) {

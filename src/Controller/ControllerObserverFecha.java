@@ -12,6 +12,8 @@ public class ControllerObserverFecha {
 
     private static ControllerObserverFecha Controller = null;
 
+    private List<ObserverFechaActual> listaObservers = new ArrayList<>();
+
     public ControllerObserverFecha() throws Exception {
     }
     public static synchronized ControllerObserverFecha getInstances() throws Exception {
@@ -31,8 +33,6 @@ public class ControllerObserverFecha {
     public void desuscribirObserver(ObserverFechaActual observer){
         this.listaObservers.remove(observer);
     }
-
-    private List<ObserverFechaActual> listaObservers = new ArrayList<>();
 
     public void comenzarChequeoDiario(Integer tiempo) throws Exception {
         ControllerObserverFecha controller = ControllerObserverFecha.getInstances();

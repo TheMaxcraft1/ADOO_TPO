@@ -10,7 +10,6 @@ public class Prestamo {
     //getter y setter, constructor
     private LocalDateTime fechaInicio;
     private boolean devuelto = false;
-    private int diasRetraso = 0;
     private LocalDateTime fechaDevolucion;
     private Ejemplar ejemplar;
     private List<ObserverPrestamoDevuelto> observadores;
@@ -18,16 +17,9 @@ public class Prestamo {
 
     public Prestamo() {
         this.fechaInicio = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-        this.diasRetraso = 0;
         this.devuelto = false;
         this.observadores = new ArrayList<>();
         this.suscribirObserver(new ObserverPrestamoDevuelto()); //SUSCRIBIR
-    }
-
-
-    //notificarProximoVencimiento(in medio:MediosContacto)
-    public void notificarProximoVencimiento(){
-       // System.out.println(socio.getMedioPreferido().toString() + ", el proximo vencimiento es: ",calcularFechaDevolucion());
     }
 
     public LocalDateTime getFechaInicio() {
@@ -63,14 +55,6 @@ public class Prestamo {
         this.observadores.remove(observer);
     }
 
-    public int getDiasRetraso() {
-        return diasRetraso;
-    }
-
-    public void setDiasRetraso(int diasRetraso) {
-        this.diasRetraso = diasRetraso;
-    }
-
     public LocalDateTime getFechaDevolucion() {
         return fechaDevolucion;
     }
@@ -78,7 +62,6 @@ public class Prestamo {
     public void setFechaDevolucion(LocalDateTime fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
-
 
     public Ejemplar getEjemplar() {
         return ejemplar;
@@ -90,10 +73,6 @@ public class Prestamo {
 
     public List<ObserverPrestamoDevuelto> getObservadores() {
         return observadores;
-    }
-
-    public void setObservadores(List<ObserverPrestamoDevuelto> observadores) {
-        this.observadores = observadores;
     }
 
     public Socio getSocioAsociado() {
@@ -114,7 +93,6 @@ public class Prestamo {
             System.out.println("SI");
         else
             System.out.println("NO");
-        System.out.println("Dias de retraso en la devolución: " + this.diasRetraso);
         System.out.println("Ejemplar: ID: " + this.ejemplar.getIdEjemplar() + " Titulo: " + this.ejemplar.getTitulo());
         System.out.println("----------------------------------------------------------------------------");
         System.out.println();

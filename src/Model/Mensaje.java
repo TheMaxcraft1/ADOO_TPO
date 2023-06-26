@@ -8,9 +8,6 @@ public class Mensaje {
     private String cuerpo = "Mensaje por defecto de la biblioteca";
     private String motivo;
 
-    public LocalDateTime getFecha() {
-        return this.fecha;
-    }
     public String getCuerpo()
     {
         return this.cuerpo;
