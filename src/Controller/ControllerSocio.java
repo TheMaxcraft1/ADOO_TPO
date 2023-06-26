@@ -83,7 +83,7 @@ public class ControllerSocio {
     public boolean verificarFechasProxima(LocalDateTime fechaActual, Socio socio){
             Prestamo ultimoPrestamo = socio.getHistorialPrestamo().get(socio.getHistorialPrestamo().size()-1);
             if(!ultimoPrestamo.isDevuelto()) {
-                if (ultimoPrestamo.getFechaDevolucion().isEqual(fechaActual.minusDays(2))) {
+                if (ultimoPrestamo.getFechaDevolucion().isEqual(fechaActual.plusDays(2))) {
                     return true;
                 }
             }

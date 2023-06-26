@@ -39,7 +39,7 @@ public class ControllerObserverFecha {
         ObserverFechaActual observerFechaActual = new ObserverFechaActual(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS));
         controller.suscribirObserver(observerFechaActual);
 
-        while (true){
+        for (int i = 0; i<3; i++){
             observerFechaActual.actualizar();
             Thread.sleep(tiempo); //24*60*60*1000 = 1 dia, tomar en cuenta para poner el valor que se quiera
         }
