@@ -41,7 +41,7 @@ public class ControllerObserverFecha {
 
         while (true){
             observerFechaActual.actualizar();
-            Thread.sleep(tiempo);
+            Thread.sleep(tiempo); //24*60*60*1000 = 1 dia, tomar en cuenta para poner el valor que se quiera
         }
     }
 }
