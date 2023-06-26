@@ -15,8 +15,8 @@ public class ObserverFechaActual implements Observer{
     }
 
     public void actualizar() throws Exception {
-        LocalDateTime fechaActual = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-        if (ultimaFecha.isEqual(fechaActual)) {
+        LocalDateTime fechaActual = LocalDateTime.now();//.truncatedTo(ChronoUnit.DAYS);
+        if (!ultimaFecha.isEqual(fechaActual)) {
             chequear(cs.getInstances());
             ultimaFecha = fechaActual;
         }
